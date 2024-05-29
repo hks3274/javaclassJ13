@@ -78,17 +78,8 @@
 					9.	고용서비스정책학과 : 85
 				)
 				*/
-				var departNum = "";
 				var department = document.getElementById("department").value;
-        if(department == "기계공학부") departNum = 20;
-        else if(department == "메카트로닉스공학부") departNum = 20;
-        else if(department == "전기ㆍ전자ㆍ통신공학부") departNum = 20;
-        else if(department == "컴퓨터공학부") departNum = 20;
-        else if(department == "디자인공학과") departNum = 20;
-        else if(department == "에너지ㆍ신소재ㆍ화학공학부") departNum = 20;
-        else if(department == "산업경영학부") departNum = 20;
-        else if(department == "기계공학부") departNum = 20;
-        else if(department == "기계공학부") departNum = 20;
+        
 
 	
         document.getElementById("pwd").value = phoneLastNum;
@@ -186,12 +177,12 @@
 	    <div class="mb-3 mt-3">
 	      <label for="studentId"><b>학과</b></label>
 	       <select name="department" id="department">
-					<option value="기계공학부">기계공학부</option>
-			    <option value="메카트로닉스공학부">메카트로닉스공학부</option>
-			    <option value="전기ㆍ전자ㆍ통신공학부">전기ㆍ전자ㆍ통신공학부</option>
-			    <option value="컴퓨터공학부">컴퓨터공학부</option>
-			    <option value="디자인공학부">디자인공학전공</option>
-			    <option value="건축공학부">건축공학전공</option>
+					<option value="20">기계공학부</option>
+			    <option value="40">메카트로닉스공학부</option>
+			    <option value="61">전기ㆍ전자ㆍ통신공학부</option>
+			    <option value="36">컴퓨터공학부</option>
+			    <option value="51">디자인공학전공</option>
+			    <option value="72">건축공학전공</option>
 			    <option value="에너지ㆍ신소재ㆍ화학공학부">에너지ㆍ신소재ㆍ화학공학부</option>
 			    <option value="산업경영학부">산업경영학부</option>
 			    <option value="고용서비스정책학과">고용서비스정책학과</option>
