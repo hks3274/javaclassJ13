@@ -26,6 +26,19 @@ public class UserControll extends HttpServlet{
 		if(com.equals("/Login")) {
 			viewPage += "/login.jsp";
 		}
+		else if(com.equals("/Join")) {
+			viewPage += "/join.jsp";
+		}
+		else if(com.equals("/LoginInput")) {
+			command = new LoginInputCommand();
+			command.execute(request, response);
+			viewPage += "/main.jsp";
+		}
+		else if(com.equals("/JoinInput")) {
+			command = new JoinInputCommand();
+			command.execute(request, response);
+			viewPage += "/login.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);	

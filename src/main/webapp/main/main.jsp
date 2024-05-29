@@ -33,8 +33,8 @@
 
 <!-- 공지사항과 이벤트 메뉴바 -->
 <div class="container">
-<div class="row">
-	<div class="col m-5" >
+	<div class="containerDiv">
+	<div class= "mt-5" >
 	  <h2><b>공지사항</b></h2>
   <p> 공지사항 뜨는 곳입니다.</p>    
   <table class="table table-hover">
@@ -65,7 +65,7 @@
   </table>
   </div>
   <c:if test="${level == 1}"> <!-- 로그인 안한 사람/ 한 사람 구분 => level -->
-	  <div class="col m-5">
+	  <div class="mt-5">
 		  <h2>이벤트</h2>
 	  <p>이곳은 이벤트가 보이는 곳입니다.</p>            
 	  <table class="table">
@@ -97,7 +97,7 @@
 		</div>
 	</c:if>
 	<c:if test="${level != 1}">
-		<div class="col m-5">
+		<div class="mt-5">
 			<table class="table table-borderless" style="height: 100%">
 				<tr>
 					<td><b>동아리가 처음이신가요?</b></td>
@@ -107,7 +107,7 @@
 					<td>
 						<p><b>동아리에 가입하시겠습니까?</b></p>
 					</td>
-					<td><a href="#">동아리가입하기</a></td>
+					<td><a href="Join.user" >동아리가입하기</a></td>
 				</tr>
 				<tr>
 					<td><b>동아리원이신가요?</b></td>
@@ -117,20 +117,20 @@
 		</div>
 	</c:if>
 </div>
-</div>
 <c:if test="${level == 1}">
 	<!-- 캘린더 -->
 	<div class="container">
-		<div class="row">
-			<div class="col">
+		<div class="containerDiv">
+			<div class="mt-5" >
 				여기는 일정입니다. <!-- 일정은 참 힘들다 -->
 		  </div>
-			<div class ="col">
+			<div class ="mt-5">
 				여기는 BEST 클라이머를 뽑는 곳입니다. <!-- 회원을 받고 할것 -->
 			</div>
 		</div>
 	</div>
 </c:if>
+</div>
 </div>
 <p><br/></p>
 <%@ include file="/include/footer.jsp"  %>
