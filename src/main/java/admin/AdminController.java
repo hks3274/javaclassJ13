@@ -1,4 +1,4 @@
-package user;
+package admin;
 
 import java.io.IOException;
 
@@ -9,38 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @SuppressWarnings("serial")
-@WebServlet("*.user")
-public class UserControll extends HttpServlet{
+@WebServlet("*.admin")
+public class AdminController extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserInterface command = null;
-		String viewPage = "/WEB-INF/user";
+		AdminInterface command = null;
+		String viewPage = "/WEB-INF/admin";
 		
 		String com = request.getRequestURI();
 		com = com.substring(com.lastIndexOf("/"), com.lastIndexOf("."));
 		
-
-		if(com.equals("/Login")) {
-			viewPage += "/login.jsp";
-		}
-		else if(com.equals("/Join")) {
-			viewPage += "/join.jsp";
-		}
-		else if(com.equals("/LoginCheck")) {
-			command = new LoginCheckCommand();
-			command.execute(request, response);
-			viewPage = "include/message.jsp";
-		}
-		else if(com.equals("/JoinInput")) {
-			command = new JoinInputCommand();
-			command.execute(request, response);
-			viewPage = "include/message.jsp";
+		if(com.equals("/AdminMain")) {
+			viewPage += "/adminMain.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);	
+		
 	}
 }

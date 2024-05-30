@@ -8,15 +8,24 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 @WebFilter("/*")
 public class EncodingFilter implements Filter{
+	
+	private static final String UTF_8 = "utf-8";
+  private static final String TEXT_HTML_UTF_8 = "text/html; charset=utf-8";
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		chain.doFilter(request, response);
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+    String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+
+    if (!path.startsWith("/css/") && !path.startsWith("/js/") && !path.startsWith("/images/")) {
+        request.setCharacterEncoding(UTF_8);
+        response.setContentType(TEXT_HTML_UTF_8);
+    }
+    chain.doFilter(request, response);
 	}
 	
 }

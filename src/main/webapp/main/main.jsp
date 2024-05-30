@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%@ include file = "/include/bs5.jsp" %>
   <title>main창</title>
-	
+  <style>
+  
+  </style>
 </head>
 <body  class="d-flex flex-column min-vh-100">
 <p><br/></p>
@@ -16,10 +18,10 @@
 <%@ include file="/include/header.jsp" %>	
 
  <!-- 사진슬라이드 -->
-<div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-bs-interval=4000 data-bs-ride="carousel">
+<div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-bs-interval=4000 data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active text-center">
-      <img src="https://cdn.pixabay.com/photo/2021/11/27/19/19/waterfall-6828794_1280.jpg" class="img-fluid"/>     
+      <img src="https://cdn.pixabay.com/photo/2021/11/27/19/19/waterfall-6828794_1280.jpg" class="img-fluid" />     
     </div>
     <div class="carousel-item text-center">
       <img src="https://cdn.pixabay.com/photo/2017/06/20/15/18/climb-2423433_1280.jpg"  class="img-fluid"/>
@@ -64,7 +66,7 @@
     </tbody>
   </table>
   </div>
-  <c:if test="${level == 1}"> <!-- 로그인 안한 사람/ 한 사람 구분 => level -->
+  <c:if test="${level > 1}"> <!-- 로그인 안한 사람/ 한 사람 구분 => level -->
 	  <div class="mt-5">
 		  <h2>이벤트</h2>
 	  <p>이곳은 이벤트가 보이는 곳입니다.</p>            
@@ -96,7 +98,7 @@
 	  </table>
 		</div>
 	</c:if>
-	<c:if test="${level != 1}">
+	<c:if test="${level < 1 || level==null }">
 		<div class="mt-5">
 			<table class="table table-borderless" style="height: 100%">
 				<tr>
@@ -117,7 +119,7 @@
 		</div>
 	</c:if>
 </div>
-<c:if test="${level == 1}">
+<c:if test="${level > 1}">
 	<!-- 캘린더 -->
 	<div class="container">
 		<div class="containerDiv">

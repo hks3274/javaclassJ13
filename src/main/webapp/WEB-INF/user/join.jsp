@@ -10,7 +10,8 @@
 	<title>회원가입창</title>
 	<script>
     'use strict';
-
+	
+    //경험 "있음"에 클릭시 경험기간을 묻는 칸이 나옴 ==> 그렇게 중요하지 않은 칸이라서 딱히 상관없음
     $(document).ready(function() {
         $('input[name="expCheck"]').on('click', function() {
             var expCheck = $('input[name="expCheck"]:checked').val();
@@ -39,7 +40,7 @@
         var phoneNum = phoneFirstNum + "-" + phoneMiddleNum + "-" + phoneLastNum;
 
         console.log("Name:", name);
-        console.log("Student Number:", studentNum);
+        console.log("Student Number:", studentId);
         console.log("Phone Number:", phoneNum);
 
         // 정규식
@@ -63,6 +64,8 @@
             alert("전화번호를 올바르게 입력하세요.");
             return false;
         }
+        document.getElementById("phoneNumAll").value = phoneNum;
+
         /*학과체크(
 				①	학번은 입학연도 4자리, 학위 구분 1자리 학부(계열 및 과)구분 2자리, 성명순번 3자리 등 10자로 구분한다.
 				②	학위별 구분 번호는 학사과정 1, 석사과정 2로 각각 부여한다.
@@ -79,10 +82,21 @@
 				)
 				*/
 				var department = document.getElementById("department").value;
-        
-
-	
+				if (studentId.toString().substring(5, 7) != department) {
+				    alert("학번과 학과정보가 일치하지 않습니다.");
+				    return false;
+				}
+				
+				/* 경험있는 사람 시간 분류 (만약에 경험없음이면 0 있으면 정보 가져오기) */
+				var expCheck = $('input[name="expCheck"]:checked').val();
+				if(expCheck == "NO") {
+					document.getElementById("expTime").value = 0;
+				}
+				
+				
         document.getElementById("pwd").value = phoneLastNum;
+    
+    		myform.submit();
     }
 </script>
 	<style >
@@ -162,7 +176,7 @@
 <%@ include file="/include/header.jsp" %>	
 	<p><br/><br/></p>
 	<div class="joinForm container mt-5" >
-		 <form name="myfrom" method="post" action="JoinInput.user" class="p-5">
+		 <form name="myform" method="post" action="JoinInput.user" class="p-5">
 		 	<h2 class="text-center mt-5">회원가입</h2>
 		 	<p class="text-right">안녕하십니까? 한기대 클라이밍 동아리 <b>STEPUP</b>입니다.<br/> 저희 동아리는 처음 가입하실 때 <u>가입비 2만원</u>을 받고 있습니다.<br/>그래서 체험을 하시고 가입을 하시는 것을 추천드립니다.<br/>(체험은 무료로 진행됩니다)<br/>체험을 원하시는 분들은 밑의 체험여부에 <font color="red">체크</font>를 해주시길 바랍니다.<br/>(가입은 체험 후 혹은 회장의 확인 후 시켜드리겠습니다.)</p>
 		 	<br/>
@@ -183,9 +197,9 @@
 			    <option value="36">컴퓨터공학부</option>
 			    <option value="51">디자인공학전공</option>
 			    <option value="72">건축공학전공</option>
-			    <option value="에너지ㆍ신소재ㆍ화학공학부">에너지ㆍ신소재ㆍ화학공학부</option>
-			    <option value="산업경영학부">산업경영학부</option>
-			    <option value="고용서비스정책학과">고용서비스정책학과</option>
+			    <option value="74">에너지ㆍ신소재ㆍ화학공학부</option>
+			    <option value="80">산업경영학부</option>
+			    <option value="85">고용서비스정책학과</option>
 			   </select>
 	    </div>
 	    <div class="mb-3 mt-3">
@@ -223,6 +237,7 @@
 	    </div>
 	    <br/>
 	    <input type="hidden" id="pwd" name="pwd" />
+	    <input type="hidden" id="phoneNumAll" name="phoneNumAll" />
 	  </form>
 	</div>
 </div>

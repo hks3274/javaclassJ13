@@ -2,7 +2,7 @@
 
 <!-- 상단 메뉴바 -->
   <!-- PC 버전 -->
-  <c:set var="level" value="0"/>
+  <c:set var="level" value= "${sJoinCheck }" />
   <div class="navbar_main">
     <a class="navbar_logo" href="${ctp}/Main">STEP UP</a>
     <div class="navbar_links">
@@ -11,11 +11,14 @@
       <a href="#">이벤트</a>
       <a href="#">커뮤니티</a>
       <a href="#">일정</a>
-      <c:if test="${level != 1}">
+      <c:if test="${level < 1 || level == null}">
      	 	<a href="Login.user">로그인</a>
       </c:if>
       <c:if test="${level == 1}">
       	<a href="#">마이페이지</a>
+      </c:if>
+      <c:if test="${level == 2}">
+      	<a href="AdminMain.admin">관리자페이지</a>
       </c:if>
     </div>
   </div>
@@ -34,12 +37,15 @@
     <a href="#">이벤트</a>
     <a href="#">커뮤니티</a>
     <a href="#">일정</a>
-   	<c:if test="${level != 1}">
+   	<c:if test="${level < 1 || level == null}">
    	 	<a href="Login.user">로그인</a>
     </c:if>
     <c:if test="${level == 1}">
     	<a href="#">마이페이지</a>
     </c:if>
+    <c:if test="${level == 2}">
+      	<a href="AdmimMain.admin">관리자페이지</a>
+      </c:if>
     <div class="navbar_burger_back">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>

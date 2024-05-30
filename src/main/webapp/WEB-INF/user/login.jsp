@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctp" value = "${pageContext.request.contextPath}"/>
+<%
+	// 로그인창에 아이디 체크 유무에 대한 처리
+	// 쿠키를 검색해서 sStudentId가 있을때 가져와서 아이디입력창에 뿌릴수 있게 한다.
+	Cookie[] cookies = request.getCookies();
+
+	if(cookies != null) {
+		for(int i=0; i<cookies.length; i++) {
+			if(cookies[i].getName().equals("cStudentId")) {
+				pageContext.setAttribute("studentId", cookies[i].getValue());
+				break;
+			}
+		}
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,19 +102,29 @@
 <%@ include file="/include/header.jsp" %>
 <p><br/><br/></p>
 	<div class="loginForm container mt-5" >
-		 <form name="myfrom" method="post" action="LoginInput.user" class="p-5">
+		 <form name="myform" method="post" action="LoginCheck.user" class="p-5">
 		 	<h2 class="text-center mt-5">로그인</h2>
 	    <div class="mb-3 mt-3">
 	      <label for="studentId"><b>학번</b></label>
-	      <input type="text" class="form-control" id="studentId" placeholder="예)2020161001" required name="studentId" >
+	      <c:if test="${studentId != null}">
+	      	<input type="text" class="form-control" id="studentId" value="${studentId}" placeholder="예)2020161001" required name="studentId" >
+				</c:if>	    
+	      <c:if test="${studentId == null}">
+	      	<input type="text" class="form-control" id="studentId" value="${studentId}" placeholder="예)2020161001" autofocus required name="studentId" >
+				</c:if>	    
 	    </div>
 	    <div class="mb-3">
 	      <label for="pwd"><b>비밀번호</b></label>
-	      <input type="password" class="form-control" id="pwd" required placeholder="초기설정: 전화번호 뒷자리(4자리)" name="pwd">
+	      <c:if test="${studentId != null}">
+	      	<input type="password" class="form-control" id="pwd" required placeholder="초기설정: 전화번호 뒷자리(4자리)" autofocus name="pwd">
+	      </c:if>
+	      <c:if test="${studentId == null}">
+	      	<input type="password" class="form-control" id="pwd" required placeholder="초기설정: 전화번호 뒷자리(4자리)"  name="pwd">
+	      </c:if>
 	    </div>
 	    <div class="form-check mb-3" >
 	      <label class="form-check-label">
-	        <input class="form-check-input" type="checkbox" name="remember"> 아이디/비번 저장
+	        <input class="form-check-input" type="checkbox" name="remember" id="remember"> 아이디 저장
 	      </label>
 	    </div>
 	    <br/>
